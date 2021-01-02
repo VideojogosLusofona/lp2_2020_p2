@@ -81,6 +81,66 @@ princípios de design de classes, como é o caso dos princípios [SOLID]. Estes
 *patterns* e princípios devem ser balanceados com o princípio [KISS], crucial
 no desenvolvimento de qualquer sistema.
 
+### Verificação automática de erros e _warnings_
+
+Na pasta do vosso projeto (ou seja, na pasta que contém o vosso ficheiro
+`.csproj`), devem colocar o ficheiro [`StyleCop.ruleset`](StyleCop.ruleset),
+sendo que o ficheiro `.csproj` do vosso projeto deve ter o seguinte formato:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+    <CodeAnalysisRuleSet>StyleCop.ruleset</CodeAnalysisRuleSet>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.16.0.25740">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Analyzers" Version="3.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="1.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
+```
+
+Em vez de executarem o vosso projeto com o comando `dotnet run`, compilem-no
+primeiro com a seguinte sequência de comandos na pasta do vosso projeto (ou
+seja, na pasta que contém o vosso ficheiro `.csproj`):
+
+```
+$ dotnet clean
+$ dotnet build
+```
+
+Vão ter agora vários _warnings_ que anteriormente não tinham. Este _warnings_
+são relativos a tudo, desde o uso de más práticas (e.g. variáveis de instância
+públicas) até esquecimentos e erros de documentação e indentação mal feita.
+
+Atenção que os projetos entregues **não devem conter qualquer _warning_**, caso
+contrário **não serão avaliados**.
+
+Esta abordagem vai criar um novo ficheiro `NomeDoProjeto.xml`, que deve ser
+ignorado através do `.gitignore`.
+
 ## Objetivos e critério de avaliação
 
 Este projeto tem os seguintes objetivos:
@@ -94,7 +154,9 @@ Este projeto tem os seguintes objetivos:
   * Código devidamente comentado e indentado.
   * Inexistência de código "morto", que não faz nada, como por exemplo
     variáveis, propriedades ou métodos nunca usados.
-  * Projeto compila e executa sem erros e/ou *warnings*.
+  * Projeto compila e executa sem erros e/ou *warnings*, tal como referido na
+    secção [Verificação automática de erros e
+    _warnings_](#verificação-automática-de-erros-e-warnings).
 * **O3** - Projeto adequadamente documentado. Documentação deve ser feita com
   [comentários de documentação XML][XML], e a documentação (gerada em formato
   HTML ou CHM com [Doxygen], [DocFX] ou ferramenta similar) deve estar incluída
