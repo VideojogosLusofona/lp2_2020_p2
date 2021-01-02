@@ -1,14 +1,14 @@
 <!--
-2º Projeto de Linguagens de Programação II 2020/2021 (c) by Nuno Fachada
+Projeto 2 de Linguagens de Programação II 2020/2021 (c) by Nuno Fachada
 
-2º Projeto de Linguagens de Programação II 2020/2021 is licensed under a
+Projeto 2 de Linguagens de Programação II 2020/2021 is licensed under a
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 You should have received a copy of the license along with this
 work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
 -->
 
-# 2º Projeto de Linguagens de Programação II 2020/2021
+# Projeto 2 de Linguagens de Programação II 2020/2021
 
 ## Descrição do problema
 
