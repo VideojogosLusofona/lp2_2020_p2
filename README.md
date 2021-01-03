@@ -135,6 +135,11 @@ Vão ter agora vários _warnings_ que anteriormente não tinham. Este _warnings_
 são relativos a tudo, desde o uso de más práticas (e.g. variáveis de instância
 públicas) até esquecimentos e erros de documentação e indentação mal feita.
 
+Estes erros e _warning_ vão aparecer automaticamente no Visual Studio 2019. No
+Visual Studio Code devem instalar a extensão [Roslynator] para visualizarem
+estes erros no editor. Em qualquer dos casos, pode ser necessário reiniciar o
+Visual Studio para que os erros apareçam após alterarem o ficheiro `.csproj`.
+
 Atenção que os projetos entregues **não devem conter qualquer _warning_**, caso
 contrário **não serão avaliados**.
 
@@ -296,3 +301,4 @@ Este enunciado é disponibilizado através da licença [CC BY-NC-SA 4.0].
 [Game Loop]:http://gameprogrammingpatterns.com/game-loop.html
 [Update Method]:http://gameprogrammingpatterns.com/update-method.html
 [Component Pattern]:https://gameprogrammingpatterns.com/component.html
+[Roslynator]:https://marketplace.visualstudio.com/items?itemName=josefpihrt-vscode.roslynator
